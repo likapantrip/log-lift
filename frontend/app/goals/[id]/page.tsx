@@ -24,6 +24,7 @@ const latestWeeklyReportData = {
   "period_end_date": "2026-03-01",
   "weekly_study_minutes": 150,
   "achievement_rate": 120.0,
+  "ai_summary": 9,
   "ai_keep": "目標達成率が100%を超えたことは、素晴らしいです。",
   "ai_try": "学習していない日があるので、少しでも毎日学習できるとさらに素晴らしいです"
 };
@@ -53,27 +54,26 @@ export default function ShowGoal() {
     <div>
       {/* 進捗状況 */}
       <Box className='flex justify-between items-center my-4 px-4'>
-        <Box>
+        <Box className='flex flex-col items-end'>
+          <Box className='flex flex-col gap-2 w-fit'>
+            <Button variant="outlined" sx={ButtonColors.GrayButton}>
+                目標編集
+            </Button>
+            <Button variant="outlined" sx={ButtonColors.GrayButton}>
+                目標アーカイブ
+            </Button>
+            <Button variant="contained" sx={ButtonColors.BlueButton}>
+                新しいログを追加
+            </Button>
+          </Box>
           <Box className='flex flex-col gap-4'>
             <Box className='font-bold underline'>進捗状況</Box>
-            <Box className='flex justify-between items-center'>
-              <Box className='flex gap-4'>
-                <StatisticsCard label="累計学習時間" value={totalStudyMinutes.total_study_minutes} unit="分" />
-                <StatisticsCard label="先週の学習時間" value={latestWeeklyReportData.weekly_study_minutes} unit="分" />
-                <StatisticsCard label="先週の達成率" value={latestWeeklyReportData.achievement_rate} unit="%" />
-                <DateCard label="レポート発行日" value={issue_date} />
-              </Box>
-              <Box className='flex flex-col gap-2'>
-                <Button variant="outlined" sx={ButtonColors.GrayButton}>
-                    目標編集
-                </Button>
-                <Button variant="outlined" sx={ButtonColors.GrayButton}>
-                    目標アーカイブ
-                </Button>
-                <Button variant="contained" sx={ButtonColors.BlueButton}>
-                    新しいログを追加
-                </Button>
-              </Box>
+            <Box className='flex gap-4'>
+              <StatisticsCard label="累計学習時間" value={totalStudyMinutes.total_study_minutes} unit="分" />
+              <StatisticsCard label="先週の総評" value={latestWeeklyReportData.ai_summary} unit="/10点" />
+              <StatisticsCard label="先週の学習時間" value={latestWeeklyReportData.weekly_study_minutes} unit="分" />
+              <StatisticsCard label="先週の達成率" value={latestWeeklyReportData.achievement_rate} unit="%" />
+              <DateCard label="レポート発行日" value={issue_date} />
             </Box>
             <Box className='flex gap-4'>
               <MessageCard label="Keep" value={latestWeeklyReportData.ai_keep} />
