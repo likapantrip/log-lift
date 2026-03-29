@@ -5,7 +5,8 @@ import {
   TableHead,
   TableRow,
   TableCell,
-  TableBody
+  TableBody,
+  Link,
 } from '@mui/material';
 import StatisticsCard from '../../../components/StatisticsCard';
 import DateCard from '../../../components/DateCard';
@@ -104,6 +105,11 @@ export default function ShowGoal() {
           ))}
         </TableBody>
       </Table>
+      <Box className='flex justify-center gap-4 px-4 mt-4'>
+        <Button variant="outlined" sx={ButtonColors.GrayButton} component={Link} href="/">
+          ダッシュボードへ戻る
+        </Button>
+      </Box>
     </div>
   );
 }

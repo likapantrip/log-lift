@@ -1,3 +1,6 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
 import {
   Box,
   Button,
@@ -6,6 +9,7 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  Link,
 } from '@mui/material';
 import StatisticsCard from '../components/StatisticsCard';
 import { ButtonColors } from '@/types/colorStyles';
@@ -40,6 +44,11 @@ const goalsData = [
 ];
 
 export default function Home() {
+  const router = useRouter();
+  const handleGoalShow = (id: number) => {
+    router.push(`/goals/${id}`);
+  };
+
   return (
     <div>
       {/* ダッシュボード */}
@@ -52,7 +61,7 @@ export default function Home() {
             <StatisticsCard label="目標時間" value={dashboardData.weekly_target_minutes} unit="分" />
           </Box>
         </Box>
-        <Button variant="contained" sx={ButtonColors.BlueButton}>
+        <Button variant="contained" sx={ButtonColors.BlueButton} component={Link} href="/goals/create">
           新しい目標を追加
         </Button>
       </Box>
@@ -70,7 +79,16 @@ export default function Home() {
         </TableHead>
         <TableBody>
           {goalsData.map((goal) => (
-            <TableRow key={goal.id}>
+            <TableRow 
+              key={goal.id}
+              onClick={() => handleGoalShow(goal.id)}
+              sx={{ 
+                cursor: 'pointer',
+                '&:hover': {
+                  backgroundColor: '#f5f5f5',
+                },
+               }}
+            >
               <TableCell>{goal.name}</TableCell>
               <TableCell>{goal.start_date}</TableCell>
               <TableCell>{goal.end_date}</TableCell>

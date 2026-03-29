@@ -1,11 +1,26 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
 import {
   Box,
   Button,
   TextField,
+  Link,
 } from '@mui/material';
 import { ButtonColors } from '@/types/colorStyles';
 
 export default function CreateGoal() {
+  const router = useRouter();
+  const handleCreateGoal = () => {
+    try {
+      // データ保存
+      // 成功したら画面遷移
+      router.push('/');
+    } 
+    catch (error) {
+      // エラーハンドリング
+    }
+  };
   return (
     <div>
       <Box>
@@ -16,10 +31,10 @@ export default function CreateGoal() {
         <TextField label="終了日" fullWidth margin="normal" type="date" slotProps={{ inputLabel: { shrink: true } }} />
       </Box>
       <Box className='flex justify-end gap-4 px-4'>
-        <Button variant="outlined" sx={ButtonColors.GrayButton}>
+        <Button variant="outlined" sx={ButtonColors.GrayButton} component={Link} href="/">
           キャンセル
         </Button>
-        <Button variant="contained" sx={ButtonColors.BlueButton}>
+        <Button variant="contained" sx={ButtonColors.BlueButton} onClick={handleCreateGoal}>
           作成
         </Button>
       </Box>
