@@ -7,7 +7,7 @@ import {
   TableCell,
   TableBody,
 } from '@mui/material';
-import DashboardCard from '../components/DashboardCard';
+import StatisticsCard from '../components/StatisticsCard';
 import { ButtonColors } from '@/types/colorStyles';
 
 const dashboardData = {
@@ -44,10 +44,13 @@ export default function Home() {
     <div>
       {/* ダッシュボード */}
       <Box className='flex justify-between items-center my-4 px-4'>
-        <Box className='flex gap-4'>
-          <DashboardCard label="達成率" value={dashboardData.weekly_achievement_rate} unit="%" />
-          <DashboardCard label="学習時間" value={dashboardData.weekly_study_minutes} unit="分" />
-          <DashboardCard label="目標時間" value={dashboardData.weekly_target_minutes} unit="分" />
+        <Box>
+          <Box>今週の進捗状況</Box>
+          <Box className='flex gap-4'>
+            <StatisticsCard label="達成率" value={dashboardData.weekly_achievement_rate} unit="%" />
+            <StatisticsCard label="学習時間" value={dashboardData.weekly_study_minutes} unit="分" />
+            <StatisticsCard label="目標時間" value={dashboardData.weekly_target_minutes} unit="分" />
+          </Box>
         </Box>
         <Button variant="contained" sx={ButtonColors.BlueButton}>
           新しい目標を追加

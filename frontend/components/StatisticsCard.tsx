@@ -6,7 +6,7 @@ type Props = {
   unit: string;
 }
 
-export default function DashboardCard({ label, value, unit}:Props) {
+export default function StatisticsCard({ label, value, unit}:Props) {
   return (
     <Box
       height={120}
