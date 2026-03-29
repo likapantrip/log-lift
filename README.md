@@ -11,7 +11,7 @@ LogLift（ログリフト）
 - 目標設定のCRUD機能
 	- タイトル
 	- 学習内容
-	- 目標値（週○時間）
+	- 目標値（週○分）
 	- 開始日
 	- 終了日
 	- ステータス
@@ -67,8 +67,8 @@ graph LR
 |Column|Type|Nullable|Default|Description|
 |-|-|-|-|-|
 |id|bigint|No|GENERATED ALWAYS AS IDENTITY||
-|title|varchar(100)|No||タイトル|
-|description|text|Yes||学習内容|
+|name|varchar(100)|No||目標名|
+|description|text|Yes||説明|
 |weekly_target_minutes|integer|No||目標値(週○分)|
 |start_date|date|No||開始日|
 |end_date|date|No||終了日|
