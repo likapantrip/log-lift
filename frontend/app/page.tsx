@@ -8,6 +8,7 @@ import {
   TableBody,
 } from '@mui/material';
 import DashboardCard from '../components/DashboardCard';
+import { ButtonColors } from '@/types/colorStyles';
 
 const dashboardData = {
   "week_start": "2026-03-02",
@@ -48,7 +49,9 @@ export default function Home() {
           <DashboardCard label="学習時間" value={dashboardData.weekly_study_minutes} unit="分" />
           <DashboardCard label="目標時間" value={dashboardData.weekly_target_minutes} unit="分" />
         </Box>
-        <Button variant="contained" color="primary">新しい目標を追加</Button>
+        <Button variant="contained" sx={ButtonColors.BlueButton}>
+          新しい目標を追加
+        </Button>
       </Box>
 
       {/* 目標一覧 */}
