@@ -21,7 +21,7 @@ const dashboardData = {
 const goalsData = [
   {
     "id": 1,
-    "title": "英語学習",
+    "name": "英語学習",
     "description": "英検3級を取得するために、毎日20分の勉強をする",
     "weekly_target_minutes": 140,
     "start_date": "2026-02-15",
@@ -30,7 +30,7 @@ const goalsData = [
   },
   {
     "id": 2,
-    "title": "Python学習",
+    "name": "Python学習",
     "description": "PythonコードでAPI作成ができるようになる",
     "weekly_target_minutes": 210,
     "start_date": "2026-02-10",
@@ -58,7 +58,7 @@ export default function Home() {
       <Table>
         <TableHead>
           <TableRow>
-            {['タイトル', '開始日', '終了日', '状態'].map((headerName) => (
+            {['目標名', '開始日', '終了日', '状態'].map((headerName) => (
               <TableCell key={headerName}>
                 {headerName}
               </TableCell>
@@ -68,7 +68,7 @@ export default function Home() {
         <TableBody>
           {goalsData.map((goal) => (
             <TableRow key={goal.id}>
-              <TableCell>{goal.title}</TableCell>
+              <TableCell>{goal.name}</TableCell>
               <TableCell>{goal.start_date}</TableCell>
               <TableCell>{goal.end_date}</TableCell>
               <TableCell>{goal.status}</TableCell>
