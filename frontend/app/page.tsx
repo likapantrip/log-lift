@@ -7,7 +7,7 @@ import {
   TableCell,
   TableBody,
 } from '@mui/material';
-import DashboardCard from './components/DashboardCard';
+import DashboardCard from '../components/DashboardCard';
 
 const dashboardData = {
   "week_start": "2026-03-02",
