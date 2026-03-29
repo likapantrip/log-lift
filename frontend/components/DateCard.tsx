@@ -2,11 +2,10 @@ import { Box } from '@mui/material';
 
 type Props = {
   label: string;
-  value: number;
-  unit: string;
+  value: Date;
 }
 
-export default function StatisticsCard({ label, value, unit}:Props) {
+export default function DateCard({ label, value}:Props) {
   return (
     <Box
       height={150}
@@ -23,8 +22,10 @@ export default function StatisticsCard({ label, value, unit}:Props) {
     >
       <Box fontSize={16}>{label}</Box>
       <Box flexDirection="row" alignItems="center" display="flex">
-        <Box fontSize={36}>{value}</Box>
-        <Box>{unit}</Box>
+        <Box fontSize={36}>{value.toLocaleDateString('ja-JP', { 
+          month: 'numeric', 
+          day: 'numeric', 
+        })}</Box>
       </Box>
     </Box>
   );

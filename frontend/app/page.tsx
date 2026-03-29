@@ -44,8 +44,8 @@ export default function Home() {
     <div>
       {/* ダッシュボード */}
       <Box className='flex justify-between items-center my-4 px-4'>
-        <Box>
-          <Box>今週の進捗状況</Box>
+        <Box className='flex flex-col gap-4'>
+          <Box className='font-bold underline'>今週の進捗状況</Box>
           <Box className='flex gap-4'>
             <StatisticsCard label="達成率" value={dashboardData.weekly_achievement_rate} unit="%" />
             <StatisticsCard label="学習時間" value={dashboardData.weekly_study_minutes} unit="分" />
