@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -11,6 +14,7 @@ import {
 import StatisticsCard from '../../../components/StatisticsCard';
 import DateCard from '../../../components/DateCard';
 import MessageCard from '../../../components/MessageCard';
+import EditGoal from '@/components/EditGoalModal';
 import { ButtonColors } from '@/types/colorStyles';
 
 const totalStudyMinutes = {
@@ -48,24 +52,44 @@ const learningLogs = {
   ]
 };
 
+const goal = {
+  "id": 1,
+  "name": "英語学習",
+  "description": "英検3級を取得するために、毎日20分の勉強をする",
+  "weekly_target_minutes": 140,
+  "start_date": "2026-02-15",
+  "end_date": "2026-04-30",
+  "status": "active"
+};
+
 export default function ShowGoal() {
+  const [isEditGoalOpen, setIsEditGoalOpen] = useState(false);
   const issue_date = new Date(latestWeeklyReportData.issue_date);
   return (
     <div>
       {/* 進捗状況 */}
       <Box className='flex justify-between items-center my-4 px-4'>
-        <Box className='flex flex-col items-end'>
-          <Box className='flex flex-col gap-2 w-fit'>
-            <Button variant="outlined" sx={ButtonColors.GrayButton}>
-                目標編集
-            </Button>
-            <Button variant="outlined" sx={ButtonColors.GrayButton}>
-                目標アーカイブ
-            </Button>
-            <Button variant="contained" sx={ButtonColors.BlueButton}>
-                新しいログを追加
-            </Button>
+        <Box className='flex flex-col'>
+          <Box className='flex justify-between items-center'>
+            <Box className='font-bold '>{`目標: ${goal.name}`}</Box>
+            <Box className='flex flex-col gap-2 w-fit'>
+              <Button 
+                variant="outlined"
+                sx={ButtonColors.GrayButton}
+                onClick={() => setIsEditGoalOpen(true)}
+              >
+                  目標編集
+              </Button>
+              <Button variant="contained" sx={ButtonColors.BlueButton}>
+                  新しいログを追加
+              </Button>
+            </Box>
           </Box>
+          <EditGoal 
+            open={isEditGoalOpen}
+            onClose={() => setIsEditGoalOpen(false)}
+            goal={goal}
+          />
           <Box className='flex flex-col gap-4'>
             <Box className='font-bold underline'>進捗状況</Box>
             <Box className='flex gap-4'>
