@@ -8,21 +8,26 @@ import {
   Box,
 } from '@mui/material';
 import { ButtonColors } from '@/types/colorStyles';
-import { LearningLogProps } from '@/types/learningLog';
+import { LearningLogProps, emptyLearningLog } from '@/types/learningLog';
 
 export default function LearningLogModal({ open, onClose, learningLog }: LearningLogProps) {
   const isEdit = learningLog?.id != null; // IDがあれば編集モード、なければ新規作成モード
 
   useEffect(() => {
-    if (open && learningLog) {
+    if (!open) return; // モーダルが開いていないときは何もしない
+
+    if (learningLog && learningLog.id != null) {
+      //編集モードの場合のみフォームに値をセット
       setFormData({
-        id: learningLog.id?.toString() ?? '',
-        goal_id: learningLog.goal_id?.toString() ?? '',
+        id: learningLog.id?.toString(),
+        goal_id: learningLog.goal_id?.toString(),
         study_date: learningLog.study_date ?? '',
-        study_minutes: learningLog.study_minutes?.toString() ?? '0',
+        study_minutes: learningLog.study_minutes?.toString(),
         result: learningLog.result ?? '',
         reflection: learningLog.reflection ?? '',
       });
+    } else {
+      setFormData(emptyLearningLog(learningLog.goal_id));
     }
   }, [open, learningLog]);
 

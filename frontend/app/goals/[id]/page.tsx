@@ -66,7 +66,7 @@ const goal = {
   "status": "active"
 };
 
-const emptyLearningLog = {
+const emptyLearningLog: LearningLog = {
   id: null,
   goal_id: goal.id,
   study_date: '',
