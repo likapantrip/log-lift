@@ -10,7 +10,7 @@ import {
 import { ButtonColors } from '@/types/colorStyles';
 import { GoalProps } from '@/types/goal';
 
-export default function EditGoalModal( {open, onClose, goal}: GoalProps ) {
+export default function GoalModal( {open, onClose, goal}: GoalProps ) {
   const isArchived = goal?.status === 'archived'; // 目標がアーカイブされているかどうか
 
   useEffect(() => {

@@ -14,7 +14,7 @@ import {
 import StatisticsCard from '../../../components/StatisticsCard';
 import DateCard from '../../../components/DateCard';
 import MessageCard from '../../../components/MessageCard';
-import EditGoal from '@/components/EditGoalModal';
+import GoalModal from '@/components/GoalModal';
 import LearningLogModal from '@/components/LearningLogModal';
 import { LearningLog } from '@/types/learningLog';
 import { ButtonColors } from '@/types/colorStyles';
@@ -76,8 +76,8 @@ const emptyLearningLog = {
 };
 
 export default function ShowGoal() {
-  const [isEditGoalOpen, setIsEditGoalOpen] = useState(false);
-  const [isCreateLearningLogOpen, setIsCreateLearningLogOpen] = useState(false);
+  const [isGoalOpen, setIsGoalOpen] = useState(false);
+  const [isLearningLogOpen, setIsLearningLogOpen] = useState(false);
   const [selectedLearningLog, setSelectedLearningLog] = useState<LearningLog>(emptyLearningLog);
 
   const issue_date = new Date(latestWeeklyReportData.issue_date);
@@ -92,7 +92,7 @@ export default function ShowGoal() {
               <Button 
                 variant="outlined"
                 sx={ButtonColors.GrayButton}
-                onClick={() => setIsEditGoalOpen(true)}
+                onClick={() => setIsGoalOpen(true)}
               >
                   目標編集
               </Button>
@@ -101,7 +101,7 @@ export default function ShowGoal() {
                 sx={ButtonColors.BlueButton}
                 onClick={() => {
                   setSelectedLearningLog(emptyLearningLog);
-                  setIsCreateLearningLogOpen(true);
+                  setIsLearningLogOpen(true);
                 }}
               >
                   新しいログを追加
@@ -110,15 +110,15 @@ export default function ShowGoal() {
           </Box>
 
           {/* モーダル */}
-          <EditGoal 
-            open={isEditGoalOpen}
-            onClose={() => setIsEditGoalOpen(false)}
+          <GoalModal 
+            open={isGoalOpen}
+            onClose={() => setIsGoalOpen(false)}
             goal={goal}
           />
           <LearningLogModal 
-            open={isCreateLearningLogOpen}
+            open={isLearningLogOpen}
             onClose={() => {
-              setIsCreateLearningLogOpen(false);
+              setIsLearningLogOpen(false);
               setSelectedLearningLog(emptyLearningLog);
             }}
             learningLog={selectedLearningLog}
@@ -158,7 +158,7 @@ export default function ShowGoal() {
               key={log.id}
               onClick={() => {
                 setSelectedLearningLog(log);
-                setIsCreateLearningLogOpen(true);
+                setIsLearningLogOpen(true);
               }}
               sx ={{
                 cursor: 'pointer',
