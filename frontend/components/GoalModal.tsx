@@ -10,11 +10,24 @@ import {
 import { ButtonColors } from '@/types/colorStyles';
 import { GoalProps } from '@/types/goal';
 
+const emptyGoal = {
+  id: '',
+  name: '',
+  description: '',
+  weekly_target_minutes: '0',
+  start_date: '',
+  end_date: '',
+  status: 'active',
+}
+
 export default function GoalModal( {open, onClose, goal}: GoalProps ) {
+  const isCreateMode = goal === null; // goalがnullの場合は作成モード
   const isArchived = goal?.status === 'archived'; // 目標がアーカイブされているかどうか
 
   useEffect(() => {
-    if (open && goal) {
+    if (!open) return; // モーダルが開いていないときは何もしない
+
+    if (goal) {
       setFormData({
         id: goal.id?.toString() ?? '',
         name: goal.name ?? '',
@@ -24,6 +37,8 @@ export default function GoalModal( {open, onClose, goal}: GoalProps ) {
         end_date: goal.end_date ?? '',
         status: goal.status ?? 'active',
       });
+    } else {
+      setFormData(emptyGoal);
     }
   }, [open, goal]);
 
@@ -60,7 +75,7 @@ export default function GoalModal( {open, onClose, goal}: GoalProps ) {
         weekly_target_minutes: parseInt(formData.weekly_target_minutes, 10),
         start_date: formData.start_date,
         end_date: formData.end_date,
-        status: formData.status,
+        status: 'active',
       };
       // データ保存
       console.log('送信データ', payload);
@@ -123,13 +138,15 @@ export default function GoalModal( {open, onClose, goal}: GoalProps ) {
           />
         </DialogContent>
         <DialogActions>
-          <Button
-            variant='outlined'
-            sx={{...ButtonColors.GrayButton, mr: 'auto'}}
-            onClick={handleStatusChange}
-          >
-            {isArchived ? 'アクティブに戻す' : 'アーカイブ'}
-          </Button>
+          {!isCreateMode &&
+            <Button
+              variant='outlined'
+              sx={{...ButtonColors.GrayButton, mr: 'auto'}}
+              onClick={handleStatusChange}
+            >
+              {isArchived ? 'アクティブに戻す' : 'アーカイブ'}
+            </Button>
+          }
           {!isArchived &&
             <Box className='flex gap-2'>
               <Button variant="outlined" sx={ButtonColors.GrayButton} onClick={onClose}>キャンセル</Button>

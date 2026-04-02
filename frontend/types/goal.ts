@@ -1,5 +1,5 @@
 export type Goal = {
-  id: number;
+  id: number | null;
   name: string;
   description: string;
   weekly_target_minutes: number;
@@ -11,5 +11,5 @@ export type Goal = {
 export type GoalProps ={
   open: boolean;
   onClose: () => void;
-  goal: Goal;
+  goal: Goal | null;
 }

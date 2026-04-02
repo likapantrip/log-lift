@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Box,
@@ -13,6 +14,7 @@ import {
 } from '@mui/material';
 import StatisticsCard from '../components/StatisticsCard';
 import { ButtonColors } from '@/types/colorStyles';
+import GoalModal from '@/components/GoalModal';
 
 const dashboardData = {
   "week_start": "2026-03-02",
@@ -30,7 +32,7 @@ const goalsData = [
     "weekly_target_minutes": 140,
     "start_date": "2026-02-15",
     "end_date": "2026-04-30",
-    "status": "アクティブ"
+    "status": "active"
   },
   {
     "id": 2,
@@ -39,16 +41,17 @@ const goalsData = [
     "weekly_target_minutes": 210,
     "start_date": "2026-02-10",
     "end_date": "2026-05-31",
-    "status": "アクティブ"
+    "status": "active"
   }
 ];
 
 export default function Home() {
+  const [isGoalOpen, setIsGoalOpen] = useState(false);
+
   const router = useRouter();
   const handleGoalShow = (id: number) => {
     router.push(`/goals/${id}`);
   };
-
   return (
     <div>
       {/* ダッシュボード */}
@@ -61,10 +64,21 @@ export default function Home() {
             <StatisticsCard label="目標時間" value={dashboardData.weekly_target_minutes} unit="分" />
           </Box>
         </Box>
-        <Button variant="contained" sx={ButtonColors.BlueButton} component={Link} href="/goals/create">
+        <Button
+          variant="contained"
+          sx={ButtonColors.BlueButton}
+          onClick={() => setIsGoalOpen(true)}
+        >
           新しい目標を追加
         </Button>
       </Box>
+
+      {/* モーダル */}
+      <GoalModal 
+        open={isGoalOpen}
+        onClose={() => setIsGoalOpen(false)}
+        goal={null}
+      />
 
       {/* 目標一覧 */}
       <Table>
