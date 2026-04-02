@@ -8,22 +8,9 @@ import {
   MenuItem,
 } from '@mui/material';
 import { ButtonColors } from '@/types/colorStyles';
+import { GoalProps } from '@/types/goal';
 
-type EditGoalProps ={
-  open: boolean;
-  onClose: () => void;
-  goal: {
-    id: number;
-    name: string;
-    description: string;
-    weekly_target_minutes: number;
-    start_date: string;
-    end_date: string;
-    status: string;
-  };
-}
-
-export default function EditGoalModal( {open, onClose, goal}: EditGoalProps ) {
+export default function EditGoalModal( {open, onClose, goal}: GoalProps ) {
   useEffect(() => {
     if (open && goal) {
       setFormData({
