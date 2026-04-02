@@ -18,6 +18,7 @@ import GoalModal from '@/components/GoalModal';
 import LearningLogModal from '@/components/LearningLogModal';
 import { LearningLog } from '@/types/learningLog';
 import { ButtonColors } from '@/types/colorStyles';
+import { GoalStatus } from '@/types/goal';
 
 const totalStudyMinutes = {
   "total_study_minutes": 300
@@ -63,7 +64,7 @@ const goal = {
   "weekly_target_minutes": 140,
   "start_date": "2026-02-15",
   "end_date": "2026-04-30",
-  "status": "active"
+  "status": "active" as GoalStatus,
 };
 
 const emptyLearningLog: LearningLog = {

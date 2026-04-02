@@ -1,3 +1,5 @@
+export type GoalStatus = 'active' | 'closed' | 'archived';
+
 export type Goal = {
   id: number | null;
   name: string;
@@ -5,7 +7,7 @@ export type Goal = {
   weekly_target_minutes: number;
   start_date: string;
   end_date: string;
-  status: string;
+  status: GoalStatus;
 };
 
 export type goalForm = {
@@ -15,10 +17,10 @@ export type goalForm = {
   weekly_target_minutes: string;
   start_date: string;
   end_date: string;
-  status: string;
+  status: GoalStatus;
 }
 
-export const emptyGoal: goalForm = {
+export const emptyGoalForm: goalForm = {
   id: '',
   name: '',
   description: '',

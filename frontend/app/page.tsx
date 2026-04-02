@@ -14,6 +14,7 @@ import {
 import StatisticsCard from '../components/StatisticsCard';
 import { ButtonColors } from '@/types/colorStyles';
 import GoalModal from '@/components/GoalModal';
+import { GoalStatus } from '@/types/goal';
 
 const dashboardData = {
   "week_start": "2026-03-02",
@@ -31,7 +32,7 @@ const goalsData = [
     "weekly_target_minutes": 140,
     "start_date": "2026-02-15",
     "end_date": "2026-04-30",
-    "status": "active"
+    "status": "active" as GoalStatus,
   },
   {
     "id": 2,
@@ -40,7 +41,7 @@ const goalsData = [
     "weekly_target_minutes": 210,
     "start_date": "2026-02-10",
     "end_date": "2026-05-31",
-    "status": "active"
+    "status": "active" as GoalStatus,
   }
 ];
 

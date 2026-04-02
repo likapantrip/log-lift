@@ -8,7 +8,7 @@ import {
   Box,
 } from '@mui/material';
 import { ButtonColors } from '@/types/colorStyles';
-import { GoalProps, emptyGoal } from '@/types/goal';
+import { GoalProps, GoalStatus, emptyGoalForm } from '@/types/goal';
 
 export default function GoalModal( {open, onClose, goal}: GoalProps ) {
   const isCreateMode = goal === null; // goalがnullの場合は作成モード
@@ -25,10 +25,10 @@ export default function GoalModal( {open, onClose, goal}: GoalProps ) {
         weekly_target_minutes: goal.weekly_target_minutes?.toString() ?? '0',
         start_date: goal.start_date ?? '',
         end_date: goal.end_date ?? '',
-        status: goal.status ?? 'active',
+        status: goal.status ?? 'active' as GoalStatus,
       });
     } else {
-      setFormData(emptyGoal);
+      setFormData(emptyGoalForm);
     }
   }, [open, goal]);
 
