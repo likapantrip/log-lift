@@ -5,12 +5,14 @@ import {
   DialogActions,
   Button,
   TextField,
-  MenuItem,
+  Box,
 } from '@mui/material';
 import { ButtonColors } from '@/types/colorStyles';
 import { GoalProps } from '@/types/goal';
 
 export default function EditGoalModal( {open, onClose, goal}: GoalProps ) {
+  const isArchived = goal?.status === 'archived'; // 目標がアーカイブされているかどうか
+
   useEffect(() => {
     if (open && goal) {
       setFormData({
@@ -34,6 +36,20 @@ export default function EditGoalModal( {open, onClose, goal}: GoalProps ) {
     end_date: '',
     status: 'active',
   });
+
+  const handleStatusChange = async () => {
+    try {
+      const payload = {
+        id: formData.id,
+        status: formData.status === 'archived' ? 'active' : 'archived',
+      };
+      // APIリクエスト
+      console.log('送信データ', payload);
+      onClose();
+    } catch (error) {
+      // エラーハンドリング
+    }
+  };
 
   const handleSave = async () => {
     // バリデーション
@@ -64,6 +80,7 @@ export default function EditGoalModal( {open, onClose, goal}: GoalProps ) {
             margin="normal"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            disabled={isArchived}
           />
           <TextField
             label="説明"
@@ -73,6 +90,7 @@ export default function EditGoalModal( {open, onClose, goal}: GoalProps ) {
             rows={4}
             value={formData.description}
             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+            disabled={isArchived}
           />
           <TextField
             label="週間目標時間（分）"
@@ -81,6 +99,7 @@ export default function EditGoalModal( {open, onClose, goal}: GoalProps ) {
             type="number"
             value={formData.weekly_target_minutes}
             onChange={(e) => setFormData({ ...formData, weekly_target_minutes: e.target.value })}
+            disabled={isArchived}
           />
           <TextField
             label="開始日"
@@ -90,6 +109,7 @@ export default function EditGoalModal( {open, onClose, goal}: GoalProps ) {
             slotProps={{ inputLabel: { shrink: true } }}
             value={formData.start_date}
             onChange={(e) => setFormData({ ...formData, start_date: e.target.value })}
+            disabled={isArchived}
           />
           <TextField
             label="終了日"
@@ -99,22 +119,23 @@ export default function EditGoalModal( {open, onClose, goal}: GoalProps ) {
             slotProps={{ inputLabel: { shrink: true } }}
             value={formData.end_date}
             onChange={(e) => setFormData({ ...formData, end_date: e.target.value })}
+            disabled={isArchived}
           />
-          <TextField
-            label="ステータス"
-            fullWidth
-            margin="normal"
-            select
-            value={formData.status}
-            onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-          >
-            <MenuItem value="active">active</MenuItem>
-            <MenuItem value="archived">archived</MenuItem>
-          </TextField>
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" sx={ButtonColors.GrayButton} onClick={onClose}>キャンセル</Button>
-          <Button variant="contained" sx={ButtonColors.BlueButton} onClick={handleSave}>保存</Button>
+          <Button
+            variant='outlined'
+            sx={{...ButtonColors.GrayButton, mr: 'auto'}}
+            onClick={handleStatusChange}
+          >
+            {isArchived ? 'アクティブに戻す' : 'アーカイブ'}
+          </Button>
+          {!isArchived &&
+            <Box className='flex gap-2'>
+              <Button variant="outlined" sx={ButtonColors.GrayButton} onClick={onClose}>キャンセル</Button>
+              <Button variant="contained" sx={ButtonColors.BlueButton} onClick={handleSave}>保存</Button>
+            </Box>
+          }
         </DialogActions>
       </Dialog>
     </div>
