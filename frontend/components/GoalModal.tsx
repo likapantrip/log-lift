@@ -8,17 +8,7 @@ import {
   Box,
 } from '@mui/material';
 import { ButtonColors } from '@/types/colorStyles';
-import { GoalProps } from '@/types/goal';
-
-const emptyGoal = {
-  id: '',
-  name: '',
-  description: '',
-  weekly_target_minutes: '0',
-  start_date: '',
-  end_date: '',
-  status: 'active',
-}
+import { GoalProps, emptyGoal } from '@/types/goal';
 
 export default function GoalModal( {open, onClose, goal}: GoalProps ) {
   const isCreateMode = goal === null; // goalがnullの場合は作成モード
