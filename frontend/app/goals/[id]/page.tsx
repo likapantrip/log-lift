@@ -15,6 +15,8 @@ import StatisticsCard from '../../../components/StatisticsCard';
 import DateCard from '../../../components/DateCard';
 import MessageCard from '../../../components/MessageCard';
 import EditGoal from '@/components/EditGoalModal';
+import LearningLogModal from '@/components/LearningLogModal';
+import { LearningLog } from '@/types/learningLog';
 import { ButtonColors } from '@/types/colorStyles';
 
 const totalStudyMinutes = {
@@ -37,6 +39,7 @@ const learningLogs = {
   "learning_logs": [
     {
       "id": 15,
+      "goal_id": 1,
       "study_date": "2026-03-03",
       "study_minutes": 35,
       "result": "chapter2を完了し、chapter3を開始",
@@ -44,6 +47,7 @@ const learningLogs = {
     },
     {
       "id": 19,
+      "goal_id": 1,
       "study_date": "2026-03-03",
       "study_minutes": 10,
       "result": "chapter3を完了",
@@ -62,8 +66,20 @@ const goal = {
   "status": "active"
 };
 
+const emptyLearningLog = {
+  id: null,
+  goal_id: goal.id,
+  study_date: '',
+  study_minutes: 0,
+  result: '',
+  reflection: '',
+};
+
 export default function ShowGoal() {
   const [isEditGoalOpen, setIsEditGoalOpen] = useState(false);
+  const [isCreateLearningLogOpen, setIsCreateLearningLogOpen] = useState(false);
+  const [selectedLearningLog, setSelectedLearningLog] = useState<LearningLog>(emptyLearningLog);
+
   const issue_date = new Date(latestWeeklyReportData.issue_date);
   return (
     <div>
@@ -80,16 +96,34 @@ export default function ShowGoal() {
               >
                   目標編集
               </Button>
-              <Button variant="contained" sx={ButtonColors.BlueButton}>
+              <Button
+                variant="contained"
+                sx={ButtonColors.BlueButton}
+                onClick={() => {
+                  setSelectedLearningLog(emptyLearningLog);
+                  setIsCreateLearningLogOpen(true);
+                }}
+              >
                   新しいログを追加
               </Button>
             </Box>
           </Box>
+
+          {/* モーダル */}
           <EditGoal 
             open={isEditGoalOpen}
             onClose={() => setIsEditGoalOpen(false)}
             goal={goal}
           />
+          <LearningLogModal 
+            open={isCreateLearningLogOpen}
+            onClose={() => {
+              setIsCreateLearningLogOpen(false);
+              setSelectedLearningLog(emptyLearningLog);
+            }}
+            learningLog={selectedLearningLog}
+          />
+
           <Box className='flex flex-col gap-4'>
             <Box className='font-bold underline'>進捗状況</Box>
             <Box className='flex gap-4'>
@@ -120,7 +154,19 @@ export default function ShowGoal() {
         </TableHead>
         <TableBody>
           {learningLogs.learning_logs.map((log) => (
-            <TableRow key={log.id}>
+            <TableRow
+              key={log.id}
+              onClick={() => {
+                setSelectedLearningLog(log);
+                setIsCreateLearningLogOpen(true);
+              }}
+              sx ={{
+                cursor: 'pointer',
+                '&:hover': {
+                  backgroundColor: '#f5f5f5',
+                },
+              }}
+            >
               <TableCell>{log.study_date}</TableCell>
               <TableCell>{log.study_minutes}</TableCell>
               <TableCell>{log.result}</TableCell>
