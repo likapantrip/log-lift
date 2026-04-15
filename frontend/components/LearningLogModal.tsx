@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { ButtonColors } from '@/styles/colorStyles';
 import { emptyLearningLog } from '@/features/learning-log/form';
-import { LearningLogProps } from '@/types/learningLog';
+import { LearningLogProps } from '@/features/learning-log/components/LearningLogModal/types';
 
 export default function LearningLogModal({ open, onClose, learningLog }: LearningLogProps) {
   const isEdit = learningLog?.id != null; // IDがあれば編集モード、なければ新規作成モード
