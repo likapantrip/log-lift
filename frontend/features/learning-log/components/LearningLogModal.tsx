@@ -7,8 +7,15 @@ import {
   Button,
   Box,
 } from '@mui/material';
-import { ButtonColors } from '@/types/colorStyles';
-import { LearningLogProps, emptyLearningLog } from '@/types/learningLog';
+import { ButtonColors } from '@/styles/colorStyles';
+import { emptyLearningLog } from '@/features/learning-log/form';
+import { LearningLog } from '@/features/learning-log/types';
+
+export type LearningLogProps = {
+  open: boolean;
+  onClose: () => void;
+  learningLog : LearningLog;
+};
 
 export default function LearningLogModal({ open, onClose, learningLog }: LearningLogProps) {
   const isEdit = learningLog?.id != null; // IDがあれば編集モード、なければ新規作成モード

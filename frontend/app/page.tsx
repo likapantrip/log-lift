@@ -12,9 +12,9 @@ import {
   TableBody,
 } from '@mui/material';
 import StatisticsCard from '../components/StatisticsCard';
-import { ButtonColors } from '@/types/colorStyles';
-import GoalModal from '@/components/GoalModal';
-import { GoalStatus } from '@/types/goal';
+import { ButtonColors } from '@/styles/colorStyles';
+import GoalModal from '@/features/goal/components/GoalModal';
+import { GoalStatus } from '../features/goal/types';
 
 const dashboardData = {
   "week_start": "2026-03-02",

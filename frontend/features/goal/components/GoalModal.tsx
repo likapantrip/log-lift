@@ -7,8 +7,15 @@ import {
   TextField,
   Box,
 } from '@mui/material';
-import { ButtonColors } from '@/types/colorStyles';
-import { GoalProps, GoalStatus, emptyGoalForm } from '@/types/goal';
+import { ButtonColors } from '@/styles/colorStyles';
+import { emptyGoalForm } from '@/features/goal/form';
+import { Goal, GoalStatus } from '@/features/goal/types';
+
+export type GoalProps ={
+  open: boolean;
+  onClose: () => void;
+  goal: Goal | null;
+}
 
 export default function GoalModal( {open, onClose, goal}: GoalProps ) {
   const isCreateMode = goal === null; // goalがnullの場合は作成モード
