@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import StatisticsCard from '../components/StatisticsCard';
 import { ButtonColors } from '@/styles/colorStyles';
-import GoalModal from '@/components/GoalModal';
+import GoalModal from '@/features/goal/components/GoalModal';
 import { GoalStatus } from '../features/goal/types';
 
 const dashboardData = {

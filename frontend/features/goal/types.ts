@@ -9,9 +9,3 @@ export type Goal = {
   end_date: string;
   status: GoalStatus;
 };
-
-export type GoalProps ={
-  open: boolean;
-  onClose: () => void;
-  goal: Goal | null;
-}
