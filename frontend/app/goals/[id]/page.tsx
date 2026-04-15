@@ -17,7 +17,7 @@ import MessageCard from '../../../components/MessageCard';
 import GoalModal from '@/components/GoalModal';
 import LearningLogModal from '@/components/LearningLogModal';
 import { LearningLog } from '@/types/learningLog';
-import { ButtonColors } from '@/types/colorStyles';
+import { ButtonColors } from '@/styles/colorStyles';
 import { GoalStatus } from '@/types/goal';
 
 const totalStudyMinutes = {

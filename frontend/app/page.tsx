@@ -12,7 +12,7 @@ import {
   TableBody,
 } from '@mui/material';
 import StatisticsCard from '../components/StatisticsCard';
-import { ButtonColors } from '@/types/colorStyles';
+import { ButtonColors } from '@/styles/colorStyles';
 import GoalModal from '@/components/GoalModal';
 import { GoalStatus } from '@/types/goal';
 

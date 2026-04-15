@@ -7,7 +7,7 @@ import {
   Button,
   Box,
 } from '@mui/material';
-import { ButtonColors } from '@/types/colorStyles';
+import { ButtonColors } from '@/styles/colorStyles';
 import { LearningLogProps, emptyLearningLog } from '@/types/learningLog';
 
 export default function LearningLogModal({ open, onClose, learningLog }: LearningLogProps) {
