@@ -6,3 +6,9 @@ export type LearningLog = {
   result: string;
   reflection: string;
 };
+
+export type LearningLogProps = {
+  open: boolean;
+  onClose: () => void;
+  learningLog : LearningLog;
+};
