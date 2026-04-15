@@ -8,7 +8,7 @@ import {
   Box,
 } from '@mui/material';
 import { ButtonColors } from '@/styles/colorStyles';
-import {  emptyGoalForm } from '@/types/goal';
+import {  emptyGoalForm } from '@/features/goal/form';
 import { GoalProps, GoalStatus } from '@/features/goal/types';
 
 export default function GoalModal( {open, onClose, goal}: GoalProps ) {

@@ -1,4 +1,4 @@
-import { Goal, GoalStatus } from "../features/goal/types";
+import { GoalStatus } from "./types";
 
 export type goalForm = {
   id: string;
@@ -19,4 +19,3 @@ export const emptyGoalForm: goalForm = {
   end_date: '',
   status: 'active',
 };
-
