@@ -18,7 +18,7 @@ import GoalModal from '@/components/GoalModal';
 import LearningLogModal from '@/components/LearningLogModal';
 import { LearningLog } from '@/features/learning-log/types';
 import { ButtonColors } from '@/styles/colorStyles';
-import { GoalStatus } from '@/types/goal';
+import { GoalStatus } from '../../../features/goal/types';
 
 const totalStudyMinutes = {
   "total_study_minutes": 300
