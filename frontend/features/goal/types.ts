@@ -10,3 +10,8 @@ export type Goal = {
   status: GoalStatus;
 };
 
+export type GoalProps ={
+  open: boolean;
+  onClose: () => void;
+  goal: Goal | null;
+}

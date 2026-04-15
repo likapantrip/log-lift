@@ -20,8 +20,3 @@ export const emptyGoalForm: goalForm = {
   status: 'active',
 };
 
-export type GoalProps ={
-  open: boolean;
-  onClose: () => void;
-  goal: Goal | null;
-}
