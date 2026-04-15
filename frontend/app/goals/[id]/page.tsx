@@ -16,7 +16,7 @@ import DateCard from '../../../components/DateCard';
 import MessageCard from '../../../components/MessageCard';
 import GoalModal from '@/components/GoalModal';
 import LearningLogModal from '@/components/LearningLogModal';
-import { LearningLog } from '@/types/learningLog';
+import { LearningLog } from '@/features/learning-log/types';
 import { ButtonColors } from '@/styles/colorStyles';
 import { GoalStatus } from '@/types/goal';
 
